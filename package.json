@@ -1,0 +1,24 @@
+{
+  "name": "bmw-x6",
+  "version": "1.0.0",
+  "description": "Интенсив \"Пишем свою промостраницу для BMW на JS\"",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimassspb/bmw-x6.git"
+  },
+  "author": "Dmitrii Isakov <dimass82@mail.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimassspb/bmw-x6/issues"
+  },
+  "homepage": "https://github.com/dimassspb/bmw-x6#readme"
+}

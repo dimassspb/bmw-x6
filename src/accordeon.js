@@ -4,9 +4,9 @@ export function accordeon() {
 
   featureLinkElems.forEach((btn, i) => {
     btn.addEventListener('click', () => {
-      if (!featureSubElems[i].classList.contains('hidden')) {
+      if (btn.classList.contains('feature__link_active')) {
+        btn.classList.remove('feature__link_active');
         featureSubElems[i].classList.add('hidden');
-        featureLinkElems[i].classList.remove('feature__link_active');
       } else {
         featureSubElems.forEach((featureSubElem) => {
           featureSubElem.classList.add('hidden');

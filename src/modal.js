@@ -1,16 +1,23 @@
+import { disableScroll } from './blockScrolled';
+import { enableScroll } from './blockScrolled';
+
 export function modal() {
-  const modalBtn = document.querySelector('.more');
+  const moreElems = document.querySelectorAll('.more');
   const modal = document.querySelector('.modal');
 
   const openModal = () => {
     modal.classList.remove('hidden');
+    disableScroll();
   };
 
   const closeModal = () => {
     modal.classList.add('hidden');
+    enableScroll();
   };
 
-  modalBtn.addEventListener('click', openModal);
+  moreElems.forEach((moreElem) => {
+    moreElem.addEventListener('click', openModal);
+  });
 
   modal.addEventListener('click', (event) => {
     const target = event.target;

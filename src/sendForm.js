@@ -24,18 +24,31 @@ export function sendForm() {
   const formElements = document.querySelectorAll('.form');
 
   const formHandler = (form) => {
+    const smallElem = document.createElement('small');
+    form.append(smallElem);
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const data = {};
-      
+      let flag = true;
 
-      for (const { name, value } of form.elements) {
+      const buttonSubmit = form.querySelector('.button[type="submit"]');
+
+      for (const elem of form.elements) {
+        const { name, value } = elem;
         if (name) {
-          data[name] = value;
+          if (value.trim()) {
+            elem.style.border = '';
+            data[name] = value.trim();
+          } else {
+            elem.style.border = '1px solid red';
+            flag = false;
+            elem.value = '';
+          }
         }
       }
-
-      const smallElem = document.createElement('small');
+      if (!flag) {
+        return (smallElem.textContent = 'Заполните все поля');
+      }
 
       sendData(
         JSON.stringify(data),
@@ -43,13 +56,16 @@ export function sendForm() {
           smallElem.textContent =
             'Ваша заявка №' + id + '! \n В ближайшее время с вами свяжемся.';
           smallElem.style.color = 'green';
-          form.append(smallElem);
+          buttonSubmit.disabled = true;
+          setTimeout(() => {
+            smallElem.textContent = '';
+            buttonSubmit.disabled = false;
+          }, 5000);
         },
         (err) => {
           smallElem.textContent =
             'К сожалению технические неполадки. Попробуйте позже.';
           smallElem.style.color = 'red';
-          form.append(smallElem);
         },
       );
       form.reset();
